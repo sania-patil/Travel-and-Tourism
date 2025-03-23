@@ -1,46 +1,50 @@
 
-package travel.managment.system;
+package travel.management;
+
 import javax.swing.*;
 import java.awt.*;
 
-public class Splash extends JFrame implements Runnable
-{
-  Thread thread;
-    Splash()
-    {
-//        setSize(1200,600);         setLocation(200,100);
-//         for loading any icon use imageicon class   
-        ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icons/splash.jpg"));  
-        Image i2 = i1.getImage().getScaledInstance(1200, 600, Image.SCALE_DEFAULT);
-         ImageIcon i3 = new ImageIcon(i2);
-          JLabel image =  new JLabel(i3);
-          
-//         place image on frame
-            add(image);
-         // setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+public class Splash extends JFrame implements Runnable {
+    Thread thread;
+    Splash(){
+        setSize(1300,700);
+        setLocation(200,100);
+        ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icons/Earth.jpg"));
+        //to import an image from system 'class loader' class and get method is required with parameter as folder name and image name
+        Image i2 = i1.getImage().getScaledInstance(1300, 500, Image.SCALE_DEFAULT);
+        //image class obj cant be directly placed in jlabel so need to convert it to image icon
+        ImageIcon i3 = new ImageIcon(i2);
+        JLabel image = new JLabel(i3);
+        //to place image on frame - add
+        add(image);
         setVisible(true);
-         thread =new Thread(this);
-         thread.start();
+        thread = new Thread(this);
+        thread.start();
+        
     }
+    
     public void run(){
-    try{
-        Thread.sleep(7000);
-        setVisible(false);
-    }catch(Exception e){}
-}
-    public static void main(String[] args)
-    {
-       Splash frame = new Splash();
-       int x=1;
-       for(int i=1;i<500;x+=7,i+=6){
-//           int x=1;f
-        frame.setLocation(750-(x+i)/2,400-(i/2));
-//           frame.setLocation(i,i);
-           frame.setSize(x+i,i);
-           try{
-               Thread.sleep(30);
-           }catch(Exception e){}
-           
-              }
-       }
+        try{
+            Thread.sleep(5000);
+            
+            setVisible(false);
+        }
+        catch(Exception e){}
+    }
+    
+    public static void main(String args[]){
+        Splash frame = new Splash();
+        int x = 1;
+        for(int i = 1;i<= 500;x += 7,i+=6){
+            frame.setLocation(750-(x+i)/2,400-(i/2));
+            frame.setSize(x+i , i);
+            try{
+//                Thread.sleep(15);
+                
+            }
+            catch (Exception e){}
+        }
+        
+        
+    }
 }
